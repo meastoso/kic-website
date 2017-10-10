@@ -196,20 +196,193 @@
     <!-- ******BOT****** --> 
     <section id=bot class="faq section">
         <div class="container">
-            <h2 class="title text-center">Bot Commands</h2>
-            <div class="row">
-            
-            </div>
-		</div>
+            <div class="row justify-content-center">
+                <div class="content col-md-8 col-12 order-md-12 text-center">
+                    <h2 class="title" id="botCommandsTitle">Bot Commands</h2>
+                    <ul class="nav nav-tabs" id="botCommandTabs" role="tablist">
+					  <li class="nav-item">
+					    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#usercommands" role="tab" aria-controls="usercommands" aria-expanded="true">User</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#vouchercommands" role="tab" aria-controls="vouchercommands">Voucher</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#admincommands" role="tab" aria-controls="admincommands">Admin</a>
+					  </li>
+					</ul>
+					<div class="tab-content" id="botCommandTabContent">
+					  <div class="tab-pane fade show active" id="usercommands" role="tabpanel" aria-labelledby="home-tab">
+						<div class="command-wrapper">
+							<div class="command-header"><span class="name">Join Queue</span><div>Example:<span class="example">!join [h, t, m, r]</span></div></div>
+							<div class="command-description">
+								<div>Adds the player to the match queue for the datacenter of the channel they are executing this command from as the specified roles. The parameter after the letter ‘q’ specifies which singular role the user wishes to join the queue as.</div>
+								<div class="embolden">'h' = Healer, 't' = Tank, 'm' = Melee, 'r' = Ranged</div>
+								<div>If no role is specified or more than one role is specified the user will be shown an error message and not entered into the queue. This command can be executed in multiple datacenter channels to add a player to multiple datacenter queues. Once the player has been entered into a match he/she is removed from all queues in other datacenters.</div>
+								<div>Additionally, players cannot re-join a new queue if they were previously in a match and they have not reported the outcome of the match.</div>
+							</div>
+						</div>
+						<div class="command-wrapper">
+							<div class="command-header"><span class="name">Join as Spectator</span><div>Example:<span class="example">!joinspec</span></div></div>
+							<div class="command-description">
+								<div>This command allows users to join the queue as a spectator (pending spectator feature for cross world custom matches).</div>
+								<div>Spectators are also required to confirm they are still able to join with the !ready check when the bot whispers them the match is ready. They will be provided the match password and instructed to join as a spectator only.</div>
+							</div>
+						</div>
+						<div class="command-wrapper">
+							<div class="command-header"><span class="name">Ready for Match</span><div>Example:<span class="example">!ready</span></div></div>
+							<div class="command-description">
+								<div>When the bot matches a game all 8 players are whispered by the bot to confirm they are ready and not AFK. If one or more do not confirm, they are removed from queue and given a temporary warning. Once 3 warnings occur they are suspended for 60 minutes with the !timeout command.</div>
+								<div>If one or more players do not confirm, the players who do !ready confirm are placed back at the top of the queue.</div>
+							</div>
+						</div>
+						<div class="command-wrapper">
+							<div class="command-header"><span class="name">Leave Queue</span><div>Example:<span class="example">!leave</span></div></div>
+							<div class="command-description">
+								<div>If a player has been in queue but something comes up and they are no longer able to participate in the next match the player uses this command to leave the queue. If the player is in multiple queues on different datacenters this will leave the player from all queues.</div>
+								<div>If admins detect an abuse of this command we will implement an autonomous system to warn/timeout users who leave too often in a designated timeframe.</div>
+							</div>
+						</div>
+						<div class="command-wrapper">
+							<div class="command-header"><span class="name">Report Win</span><div>Example:<span class="example">!win</span></div></div>
+							<div class="command-description">
+								<div>This command allows players who are currently existing in a match to report to the bot that their team has won the match.</div>
+								<div>Once 5/8 players report the match (i.e. 3 win, 2 lose or any combination of 5) the match is recorded as complete and MMR is awarded based on match outcome. If a quorum of 5/8 is not reached within 5 minutes of a match being reported by a player in the match and there are no conflicting reports the results that have been reported will be used to determine the match outcome.</div>
+								<div>If there are any conflicting reports, the match will not be recorded and admins will be notified.</div>
+								<div>Additionally, players cannot re-join a new queue if they were previously in a match and they have not reported the outcome of the match.</div>
+							</div>
+						</div>
+						<div class="command-wrapper">
+							<div class="command-header"><span class="name">Report Lose</span><div>Example:<span class="example">!lose</span></div></div>
+							<div class="command-description">
+								<div>(See above for details, same as !win command)</div>
+							</div>
+						</div>
+						<div class="command-wrapper">
+							<div class="command-header"><span class="name">Show Queue</span><div>Example:<span class="example">!showq</span></div></div>
+							<div class="command-description">
+								<div>This command allows any user to see which roles are missing for a match to begin.</div>
+							</div>
+						</div>
+						<div class="command-wrapper">
+							<div class="command-header"><span class="name">Show User Role</span><div>Example:<span class="example">!role [user]</span></div></div>
+							<div class="command-description">
+								<div>This command allows users to see the current role of a user, particularly if the user has the “voucher” role. Any user can see any other users roles.</div>
+							</div>
+						</div>
+						<div class="command-wrapper">
+							<div class="command-header"><span class="name">Show Stats</span><div>Example:<span class="example">!stats</span></div></div>
+							<div class="command-description">
+								<div>Whispers the user his/her personal statistical data, including their MMR and winrates for each role. Does not have any parameters and can only be used to fetch your own stats.</div>
+								<div><div class="embolden">NOTE:</div>This means each player has a unique MMR per role and per datacenter.</div>
+							</div>
+						</div>
+				  	  </div>
+					  <div class="tab-pane fade" id="vouchercommands" role="tabpanel" aria-labelledby="profile-tab">
+						<div class="command-wrapper">
+							<div class="command-header"><span class="name">Vouch</span><div>Example:<span class="example">!vouch [user]</span></div></div>
+							<div class="command-description">
+								<div>This command allows any voucher to “vouch” for a user, where [user] is the new player’s discord handle/username.</div>
+								<div>If the user executing this command is an admin or super admin the player being vouched does not require a second vouch and is automatically added to vouched player pool.</div>
+								<div>For now, once a player has received two vouches from players with the “voucher” role he/she is added to the league but super admins have an option to enable an approval layer where admins must approve a player who has received the two required vouches first. For now this feature is disabled but can be enabled at a later time.</div>
+							</div>
+						</div>
+					  </div>
+					  <div class="tab-pane fade" id="admincommands" role="tabpanel" aria-labelledby="dropdown1-tab">
+					  	<div class="command-wrapper">
+							<div class="command-header"><span class="name">Set Role</span><div>Example:<span class="example">!setrole [role] [user]</span></div></div>
+							<div class="command-description">
+								<div>This admin command allows admins to add a role to a user, for example “voucher” role.</div>
+								<div>Possible roles for admins to use: <span class='role'>"voucher"</span></div>
+								<div>Possible roles for superadmins to use: <span class='role'>"voucher", "admin"</span></div>
+							</div>
+						</div>
+						<div class="command-wrapper">
+							<div class="command-header"><span class="name">User Data</span><div>Example:<span class="example">!data [user]</span></div></div>
+							<div class="command-description">
+								<div>This admin command allows admins to view data about the specified player, such as how long they have been in the league, when they joined, who vouched them and their player stats.</div>
+							</div>
+						</div>
+						<div class="command-wrapper">
+							<div class="command-header"><span class="name">Timeout or Suspend</span><div>Example:<span class="example">!timeout [mins] [user]</span></div></div>
+							<div class="command-description">
+								<div>This admin command will temporarily suspend a user from queueing into a match for a specified timeframe in minutes.</div>
+							</div>
+						</div>
+						<div class="command-wrapper">
+							<div class="command-header"><span class="name">Ban</span><div>Example:<span class="example">!ban [user]</span></div></div>
+							<div class="command-description">
+								<div>This admin command will mark the specified user as “ban” and restrict the user from using any bot commands or queueing for a match.</div>
+								<div>NOTE: The user’s data will not be removed from the system since there is no direct benefit to this.</div>
+							</div>
+						</div>
+						<div class="command-wrapper">
+							<div class="command-header"><span class="name">Clear Queue</span><div>Example:<span class="example">!clear</span></div></div>
+							<div class="command-description">
+								<div>This admin command allows admins to completely remove all players currently in the match queue for the datacenter this command was executed from.</div>
+							</div>
+						</div>
+						<div class="command-wrapper">
+							<div class="command-header"><span class="name">Remove From Queue</span><div>Example:<span class="example">!remove [user]</span></div></div>
+							<div class="command-description">
+								<div>This admin command will remove the specified user from all queues across all datacenters.</div>
+							</div>
+						</div>
+						<div class="command-wrapper">
+							<div class="command-header"><span class="name">Queue Info</span><div>Example:<span class="example">!queueinfo</span></div></div>
+							<div class="command-description">
+								<div>An admin command which returns data about the current queue for the datacenter-channel the command was executed in.</div>
+							</div>
+						</div>
+						<div class="command-wrapper">
+							<div class="command-header"><span class="name">Count Players</span><div>Example:<span class="example">!count</span></div></div>
+							<div class="command-description">
+								<div>An admin command which returns the total number of players vouched for in the KIHC.</div>
+							</div>
+						</div>
+						<div class="command-wrapper">
+							<div class="command-header"><span class="name">View Approvals</span><div>Example:<span class="example">!approvals</span></div></div>
+							<div class="command-description">
+								<div>This admin command returns the current list of users who have been vouched but require admin approval before they are added to the league.</div>
+								<div>This command is only accessible when super admin command !vouchapproval is set to “on”.</div>
+							</div>
+						</div>
+						<div class="command-wrapper">
+							<div class="command-header"><span class="name">Approve User</span><div>Example:<span class="example">!approve [user]</span></div></div>
+							<div class="command-description">
+								<div>This admin command approves a user who has been vouched and is waiting for admin approval. The list of users requiring approval can be found using the !approvals command described above.</div>
+								<div>This command is only accessible when super admin command !vouchapproval is set to “on”.</div>
+							</div>
+						</div>
+					  </div>
+					</div>
+                </div><!--//content-->
+            </div><!--//row-->
+        </div><!--//container-->
 	</section>
 	
 	<!-- ******VOUCHERS****** --> 
     <section id="rules" class="story section has-pattern">
         <div class="container">
-            <div class="row">
-            
-            </div>
-    	</div>
+            <div class="row justify-content-center">
+                <div class="content col-md-8 col-12 order-md-12 text-center">
+                    <h2 class="title">Rules of Vouching / What it means to Vouch</h2>
+                    <div class="rules-content">When you vouch someone , you’re essentially introducing a new friend into your current group of friends. You’re telling everyone, “hey, guys, this is my new buddy, this person is cool I think they will fit in with everyone else.” Our hopes are the same as yours, and while there are no guarantees how people work with each other over the internet, here are our main points.</div>
+                    <div class="rules-content">
+                    	<ul>
+	                    	<li>First, we very specifically are looking to add players who can handle wins, losses, and the other typical interactions of a competitive environment in a mature manner. Can a player keep a cool-head after a losing a close match where someone made a mistake? Are they able to be patient with other people when those guys might be learning new roles? That works for us and that’s what we want here. Or does a player flip out and start talking down to someone who didn’t understand any better, or harass them for their own peace of mind? That absolutely does not work for us.</li>
+	                    	<li>Second, a player should have a reasonable expectation of how to play the game mode. As mentioned before, they don’t need to have thousands of hours of experience or any specific ranks or winrates, but they should know what they’re doing to a fair degree. We all want to have quality games and bringing in someone who is brand new would only make their gameplay experience far too difficult and likely unenjoyable. Everyone in the club wants to queue knowing they can count on their teammates to at least play decently. </li>
+	                    	<li>Third, make entirely sure that player is who they say they are. Be familiar with them and what kind of person they are. Are they someone who will be fun for others to play with or will they be disruptive?</li>
+                    	</ul>
+                    </div>
+                    <div class="rules-content embolden">So take care in whom you vouch. We see vouching as a privilege that you earn but also one that can be rescinded if players aren’t careful with it. So please be responsible with your vouches.</div>
+                </div><!--//content-->
+                <!-- <div id="video-container" class="video-container col-md-6 col-12 order-md-1">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="//player.vimeo.com/video/87044590" width="570" height="320" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    </div>
+                </div><!--//video-->
+            </div><!--//row-->
+        </div><!--//container-->
     </section>
     
     <!-- ******FAQ****** --> 
@@ -283,8 +456,8 @@
             <div class="row">
                 <div class="content col-md-6 col-12 text-center">
                     <h2 class="title">Story behind the Inhouse Club</h2>
-                    <p>Some time ago, before Feast PvP existed, a small but dedicated group of us from Primal would try and queue nightly for Wolves’ Den PvP. We had players from across the Primal Datacenter all working together just to get games rolling on demand and our nights would last for hours. As time went on it became more challenging accomplish this, though the passion remained. Since then, many players, including ourselves have been looking for ways to play quality games with respectable players the same way we did in the past.</p>
-                    <p>With 4.1 here and the option for cross-server custom matches now available we hope to realize some of those ideals. With a bot that can automate intelligent matchmaking and a playerbase that cares about participating in quality games, we hope our platform encapsulates all of those ideals. That’s what KIHC is for.</p>
+                    <p>Some time ago, before Feast PvP existed, a small but dedicated group of us from Primal would try and queue nightly for Wolves’ Den PvP. We had players from Behemoth, Ultros, Leviathan, Excalibur, and several other servers all working together just to get games rolling on demand, and our nights would last for hours. As time went on it became more challenging to hold PvP nights, though the passion remained the same for many players. Since then, many players, including myself have been looking for ways to play quality games with respectable players the same way we did in the past.</p>
+                    <p>With 4.1 here and the option for cross-server custom matches a now available feature we feel we can realize some of those ideals. With a bot that can automate intelligent matchmaking and a playerbase that cares about having those quality games, we feel that we can create a platform that encapsulates all of that. And that’s what KIHC is for.</p>
                 </div><!--//content-->
                 <div class="team col-md-5 col-12 mr-auto ml-auto">
                     <div class="row">

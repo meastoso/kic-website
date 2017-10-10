@@ -23,7 +23,28 @@ jQuery(document).ready(function($) {
         $('.promo-landscape .phone-holder').css('opacity', 0).one('inview', function(event, isInView) {
             if (isInView) {$(this).addClass('animated fadeInUp delayp4');}
         });
-    
+        
+        $('.download-area').css('opacity', 0).one('inview', function(event, isInView) {
+            if (isInView) {$(this).addClass('animated fadeInUp delayp4');}
+        });
+        
+        $('.monitor').css('opacity', 0).one('inview', function(event, isInView) {
+            if (isInView) {$(this).addClass('animated fadeInRight delayp4');}
+        });
+        
+        $('#botCommandsTitle').css('opacity', 0).one('inview', function(event, isInView) {
+            if (isInView) {$(this).addClass('animated fadeInDown delayp1');}
+        });
+        
+        $('#botCommandTabs').css('opacity', 0).one('inview', function(event, isInView) {
+            if (isInView) {$(this).addClass('animated fadeInDown delayp1');}
+        });
+        
+        $('.command-wrapper').css('opacity', 0).one('inview', function(event, isInView) {
+            if (isInView) {$(this).addClass('animated fadeInRight delayp4');}
+        });
+        
+        
         /* Animate elements in #Features */
         $('#features .icon').css('opacity', 0).one('inview', function(event, isInView) {
             if (isInView) {$(this).addClass('animated fadeInUp delayp1');}

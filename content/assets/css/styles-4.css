@@ -1706,3 +1706,50 @@ select {
   }
 }
 /* Large devices (large desktops, 1200px and up) */
+
+.command-wrapper {
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.command-header {
+	background-color: #2F72AB;
+    color: white;
+    padding: 5px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.command-header .name {
+	font-size: 20pt;
+}
+
+.command-header .example {
+	font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.command-description>div {
+	padding: 5px;
+}
+
+.embolden {
+	font-weight: bold;
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+
+.role {
+	font-weight: bold;
+}
+
+.rules-content {
+	padding: 10px;
+}
+
+.rules-content li {
+	margin-top: 20px;
+}
